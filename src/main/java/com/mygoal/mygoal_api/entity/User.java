@@ -26,6 +26,11 @@ public class User {
     public User() {
     }
 
+    public User(User source) {
+        this.email = source.getEmail();
+        this.password = source.getPassword();
+    }
+
     public Long getId() {
         return id;
     }
