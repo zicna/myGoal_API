@@ -13,4 +13,8 @@ public class UserServiceImpl  implements UserService{
     public User saveUser(User entity){
         return userRepository.save(entity);
     }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }
