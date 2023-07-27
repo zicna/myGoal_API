@@ -1,4 +1,4 @@
-package com.mygoal.mygoal_api.controller;
+package com.mygoal.mygoal_api.web;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
