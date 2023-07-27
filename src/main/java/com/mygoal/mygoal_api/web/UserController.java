@@ -27,14 +27,15 @@ public class UserController {
 
     @PostMapping(value = "/singup")
     public ResponseEntity<User> userSignup(@RequestBody User entity) {
-        User user = userService.saveUser(entity);
+        User user = userService.findOrCreateUser(entity);
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/login")
-    public ResponseEntity<User> userLogin(@RequestBody User entity){
+    public ResponseEntity<User> userLogin(@RequestBody User entity) {
         User user = userService.findByEmail(entity.getEmail());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
+
