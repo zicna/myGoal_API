@@ -1,20 +1,30 @@
 package com.mygoal.mygoal_api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mygoal.mygoal_api.entity.User;
-import com.mygoal.mygoal_api.repository.UserRepository;
+import com.mygoal.mygoal_api.exception.UserNotFoundException;
+import com.mygoal.mygoal_api.repository.user_repo.UserRepository;
 @Service
 public class UserServiceImpl  implements UserService{
 
     @Autowired
     UserRepository userRepository;
-    public User saveUser(User entity){
-        return userRepository.save(entity);
+    public User findOrCreateUser(User user){
+        Optional<User> userOpt =  userRepository.findByEmail(user.getEmail());
+        if(userOpt.isPresent()) return userOpt.get();
+        return userRepository.save(user);
+
     }
 
     public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+      Optional<User> userOpt =  userRepository.findByEmail(email);
+      if(userOpt.isPresent()) return userOpt.get();
+      else throw new UserNotFoundException(email);
     }
+
+
 }
