@@ -1,5 +1,7 @@
 package com.mygoal.mygoal_api.entity;
 
+import com.mygoal.mygoal_api.request.UserRequest;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,12 @@ public class User {
     public User(User source) {
         this.email = source.getEmail();
         this.password = source.getPassword();
+    }
+
+    public User(UserRequest userRequest) {
+        this.email = userRequest.getEmail();
+        this.password = userRequest.getPassword();
+
     }
 
     public Long getId() {

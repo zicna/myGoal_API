@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import com.mygoal.mygoal_api.entity.User;
+import com.mygoal.mygoal_api.request.UserRequest;
 import com.mygoal.mygoal_api.service.UserService;
-
 
 @Controller
 public class UserController {
@@ -29,10 +29,16 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/user")
+    public ResponseEntity<User> createUserViaUserRequest(@RequestBody UserRequest userRequest) {
+        User user = new User(userRequest);
+        return new ResponseEntity<User>(userService.findOrCreateUser(user), HttpStatus.OK);
+
+    }
+
     @GetMapping(value = "/login")
     public ResponseEntity<User> userLogin(@RequestBody User entity) {
         User user = userService.findByEmail(entity.getEmail());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
-
