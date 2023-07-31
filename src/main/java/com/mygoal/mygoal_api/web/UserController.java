@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 
 import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
-// TODO: "/signup" route should create new user only if email privided is not already in use
 
 @Controller
 public class UserController {
