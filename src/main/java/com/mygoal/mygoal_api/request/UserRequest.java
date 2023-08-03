@@ -1,9 +1,15 @@
 package com.mygoal.mygoal_api.request;
 
+import jakarta.validation.constraints.*;
+
 public class UserRequest {
     // ! Can request fields be final
-    private final String email;
-    private final String password;
+    @Email(message = "email must be valid")
+    @NotBlank(message = "email must be valid")
+    private String email;
+    @Min(4)
+    @NotBlank()
+    private String password;
 
     public UserRequest(String email, String password) {
         this.email = email;
@@ -16,6 +22,14 @@ public class UserRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
