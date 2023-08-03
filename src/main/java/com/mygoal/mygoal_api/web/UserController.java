@@ -28,10 +28,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/singup")
-    public ResponseEntity<User> userSignup(@RequestBody User entity) {
-        User user = userService.findOrCreateUser(entity);
+    public ResponseEntity<User> userSignup(@RequestBody @Valid UserRequest userRequest, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new WrongUserInputException(result.getFieldError().getDefaultMessage());
+        }
+        User userEntity = new User(userRequest);
 
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.findOrCreateUser(userEntity), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/user")
