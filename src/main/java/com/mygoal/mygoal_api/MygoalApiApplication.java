@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // ! Validation
 // TODO: create custom validation for user password field 
 
+// !Goal and User
+// TODO: refactor so User/Goal and UserRequestGoalRequest has same super class
+
 
 @SpringBootApplication
 public class MygoalApiApplication {
