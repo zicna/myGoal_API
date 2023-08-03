@@ -8,7 +8,6 @@ public class UserRequest {
     @NotBlank(message = "email must be valid")
     private String email;
     @Min(4)
-    @NotBlank()
     private String password;
 
     public UserRequest(String email, String password) {
