@@ -1,4 +1,4 @@
-package com.mygoal.mygoal_api.service;
+package com.mygoal.mygoal_api.service.user;
 
 
 import com.mygoal.mygoal_api.entity.User;
