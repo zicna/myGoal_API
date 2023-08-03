@@ -3,8 +3,8 @@ package com.mygoal.mygoal_api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// TODO: basic validation for User entity
-// TODO: refactor User validation into UserRequest and use it in controller for USer builder
+// TODO: Add Goal entity, GoalRequest with validation, Service, Repositry, Controller
+// TODO: Add relationship between User and Goal
 
 // ! Validation
 // TODO: create custom validation for user password field 
