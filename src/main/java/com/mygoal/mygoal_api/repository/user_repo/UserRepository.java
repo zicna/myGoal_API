@@ -12,4 +12,7 @@ public interface UserRepository extends CrudRepository<User, Long>, UserReposito
 
     @Transactional
     public Optional<User> findByEmail(String email);
+
+    @Transactional
+    public Optional<User> findById(Long id);
 }

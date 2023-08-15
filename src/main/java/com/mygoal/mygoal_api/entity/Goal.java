@@ -1,10 +1,13 @@
 package com.mygoal.mygoal_api.entity;
 
+import com.mygoal.mygoal_api.request.GoalRequest;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+@Entity
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +37,16 @@ public class Goal {
         this.description = description;
         this.status = status;
         this.goalType = goalType;
+    }
+
+    public Goal(GoalRequest goalRequest) {
+        this.title = goalRequest.getTitle();
+        this.title = goalRequest.getStartDate();
+        this.title = goalRequest.getEndDate();
+        this.title = goalRequest.getDescription();
+        this.title = goalRequest.getStatus();
+        this.title = goalRequest.getGoalType();
+
     }
 
     public Long getId() {

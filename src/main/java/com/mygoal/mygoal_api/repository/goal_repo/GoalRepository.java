@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mygoal.mygoal_api.entity.Goal;
 
-public interface GoalRepository extends CrudRepository<Goal, Long>{
+public interface GoalRepository extends CrudRepository<Goal, Long> {
 }

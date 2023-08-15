@@ -26,5 +26,11 @@ public class UserServiceImpl  implements UserService{
       else throw new UserNotFoundException(email);
     }
 
+    public User findById(Long id){
+      Optional<User> userOpt = userRepository.findById(id);
+      if(userOpt.isPresent()) return userOpt.get();
+      else throw new UserNotFoundException(id);
+    }
+
 
 }
