@@ -41,11 +41,11 @@ public class Goal {
 
     public Goal(GoalRequest goalRequest) {
         this.title = goalRequest.getTitle();
-        this.title = goalRequest.getStartDate();
-        this.title = goalRequest.getEndDate();
-        this.title = goalRequest.getDescription();
-        this.title = goalRequest.getStatus();
-        this.title = goalRequest.getGoalType();
+        this.startDate = goalRequest.getStartDate();
+        this.endDate = goalRequest.getEndDate();
+        this.description = goalRequest.getDescription();
+        this.status = goalRequest.getStatus();
+        this.goalType = goalRequest.getGoalType();
 
     }
 
