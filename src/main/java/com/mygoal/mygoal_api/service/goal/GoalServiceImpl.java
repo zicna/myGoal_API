@@ -14,6 +14,7 @@ public class GoalServiceImpl implements GoalService {
     GoalRepository goalRepo;
 
     public Goal saveGoal(GoalRequest goalRequest) {
-        return goalRepo.save(goalRequest);
+        Goal goal = new Goal(goalRequest);
+        return goalRepo.save(goal);
     }
 }

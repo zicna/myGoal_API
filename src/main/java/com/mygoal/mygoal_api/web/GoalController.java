@@ -29,7 +29,7 @@ public class GoalController {
         // * for now, this is only a guard clause to check if user is present
         User user = userService.findById(user_id);
 
-        Goal goal = new Goal(goalRequest);
+        Goal goal = goalService.saveGoal(goalRequest);
 
         return new ResponseEntity<Goal>(goal, HttpStatus.OK);
         
