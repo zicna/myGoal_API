@@ -32,9 +32,9 @@ public class AuthController {
         if (result.hasErrors()) {
             throw new WrongUserInputException(result.getFieldError().getDefaultMessage());
         }
-        User userEntity = new User(userRequest);
+        // User userEntity = new User(userRequest);
 
-        return new ResponseEntity<>(userService.findOrCreateUser(userEntity), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.findOrCreateUser(userRequest), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/user")
@@ -43,8 +43,7 @@ public class AuthController {
         if (result.hasErrors()) {
             throw new WrongUserInputException(result.getFieldError().getDefaultMessage());
         }
-        User user = new User(userRequest);
-        return new ResponseEntity<User>(userService.findOrCreateUser(user), HttpStatus.OK);
+        return new ResponseEntity<User>(userService.findOrCreateUser(userRequest), HttpStatus.OK);
 
     }
 

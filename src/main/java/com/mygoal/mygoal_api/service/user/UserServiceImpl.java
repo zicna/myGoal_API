@@ -8,29 +8,38 @@ import org.springframework.stereotype.Service;
 import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.exception.UserNotFoundException;
 import com.mygoal.mygoal_api.repository.user_repo.UserRepository;
+import com.mygoal.mygoal_api.request.UserRequest;
+
 @Service
-public class UserServiceImpl  implements UserService{
+public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
-    public User findOrCreateUser(User user){
-        Optional<User> userOpt =  userRepository.findByEmail(user.getEmail());
-        if(userOpt.isPresent()) return userOpt.get();
-        return userRepository.save(user);
+  @Autowired
+  UserRepository userRepository;
 
-    }
+  public User findOrCreateUser(UserRequest userRequest) {
+    Optional<User> userOpt = userRepository.findByEmail(userRequest.getEmail());
+    if (userOpt.isPresent())
+      return userOpt.get();
+    // * mapping userRequest to user entity
+    User user = new User(userRequest);
+    return userRepository.save(user);
 
-    public User findByEmail(String email){
-      Optional<User> userOpt =  userRepository.findByEmail(email);
-      if(userOpt.isPresent()) return userOpt.get();
-      else throw new UserNotFoundException(email);
-    }
+  }
 
-    public User findById(Long id){
-      Optional<User> userOpt = userRepository.findById(id);
-      if(userOpt.isPresent()) return userOpt.get();
-      else throw new UserNotFoundException(id);
-    }
+  public User findByEmail(String email) {
+    Optional<User> userOpt = userRepository.findByEmail(email);
+    if (userOpt.isPresent())
+      return userOpt.get();
+    else
+      throw new UserNotFoundException(email);
+  }
 
+  public User findById(Long id) {
+    Optional<User> userOpt = userRepository.findById(id);
+    if (userOpt.isPresent())
+      return userOpt.get();
+    else
+      throw new UserNotFoundException(id);
+  }
 
 }
