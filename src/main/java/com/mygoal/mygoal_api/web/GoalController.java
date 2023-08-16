@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @Controller
 public class GoalController {
     @Autowired
@@ -24,15 +23,15 @@ public class GoalController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value="user/{user_id}/goal")
+    @PostMapping(value = "user/{user_id}/goal")
     public ResponseEntity<Goal> createGoal(@RequestBody GoalRequest goalRequest, @PathVariable Long user_id) {
-        // * for now, this is only a guard clause to check if user is present
+        // * guard clause to check if user is present, if it is assign it to a goal
         User user = userService.findById(user_id);
 
-        Goal goal = goalService.saveGoal(goalRequest);
+        Goal goal = goalService.saveGoal(goalRequest, user);
 
         return new ResponseEntity<Goal>(goal, HttpStatus.OK);
-        
+
     }
-    
+
 }
