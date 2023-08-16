@@ -2,7 +2,6 @@ package com.mygoal.mygoal_api.entity;
 
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mygoal.mygoal_api.request.UserRequest;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

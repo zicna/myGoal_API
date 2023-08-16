@@ -1,4 +1,4 @@
-package com.mygoal.mygoal_api.request;
+package com.mygoal.mygoal_api.entity;
 
 import jakarta.validation.constraints.*;
 

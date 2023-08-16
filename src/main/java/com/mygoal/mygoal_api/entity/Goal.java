@@ -1,7 +1,5 @@
 package com.mygoal.mygoal_api.entity;
 
-import com.mygoal.mygoal_api.request.GoalRequest;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

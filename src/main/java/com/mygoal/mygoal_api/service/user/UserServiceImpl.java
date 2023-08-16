@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mygoal.mygoal_api.entity.User;
+import com.mygoal.mygoal_api.entity.UserRequest;
 import com.mygoal.mygoal_api.exception.UserNotFoundException;
 import com.mygoal.mygoal_api.repository.user_repo.UserRepository;
-import com.mygoal.mygoal_api.request.UserRequest;
 
 @Service
 public class UserServiceImpl implements UserService {

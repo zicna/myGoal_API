@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // TODO: Add validation for GoalRequest
-// TODO: Add relationship between User and Goal
 
 // ! Validation
 // TODO: create custom validation for user password field 

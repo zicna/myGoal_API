@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.mygoal.mygoal_api.entity.Goal;
+import com.mygoal.mygoal_api.entity.GoalRequest;
 import com.mygoal.mygoal_api.entity.User;
-import com.mygoal.mygoal_api.request.GoalRequest;
 import com.mygoal.mygoal_api.service.goal.GoalService;
 import com.mygoal.mygoal_api.service.user.UserService;
 
