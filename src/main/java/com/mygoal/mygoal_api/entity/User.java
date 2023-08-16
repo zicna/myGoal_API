@@ -1,12 +1,16 @@
 package com.mygoal.mygoal_api.entity;
 
+import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mygoal.mygoal_api.request.UserRequest;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +23,10 @@ public class User {
     private String email;
     @Column
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Goal> goals;
 
     public User(String email, String password) {
         this.email = email;
@@ -61,6 +69,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setGoals(Set<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public Set<Goal> getGoals() {
+        return goals;
     }
 
 }

@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
 public class Goal {
     @Id
@@ -27,6 +30,10 @@ public class Goal {
 
     // ? Should we have this??
     // private boolean accomplished;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     public Goal() {
     }
 
@@ -103,6 +110,14 @@ public class Goal {
 
     public void setGoalType(String goalType) {
         this.goalType = goalType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
