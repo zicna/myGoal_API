@@ -1,4 +1,4 @@
-package com.mygoal.mygoal_api.exception;
+package com.mygoal.mygoal_api.exception.user;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String email){
