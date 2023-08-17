@@ -2,6 +2,7 @@ package com.mygoal.mygoal_api.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
@@ -11,6 +12,7 @@ import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.service.goal.GoalService;
 import com.mygoal.mygoal_api.service.user.UserService;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +33,14 @@ public class GoalController {
         Goal goal = goalService.saveGoal(goalRequest, user);
 
         return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+    }
 
+    @GetMapping(value = "user/{user_id}/goal/{goal_id}")
+    public ResponseEntity<Goal> getGoal(@PathVariable Long user_id, @PathVariable Long goal_id){
+        User user = userService.findById(user_id);
+
+        Goal goal = goalService.getGoal(user.getId(), goal_id);
+        return new ResponseEntity<Goal>(goal, HttpStatus.OK);
     }
 
 }

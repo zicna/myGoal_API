@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 
 import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.entity.UserRequest;
-import com.mygoal.mygoal_api.exception.WrongUserInputException;
+import com.mygoal.mygoal_api.exception.user.WrongUserInputException;
 import com.mygoal.mygoal_api.service.user.UserService;
 
 import jakarta.validation.Valid;

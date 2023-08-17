@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.entity.UserRequest;
-import com.mygoal.mygoal_api.exception.UserNotFoundException;
+import com.mygoal.mygoal_api.exception.user.UserNotFoundException;
 import com.mygoal.mygoal_api.repository.user_repo.UserRepository;
 
 @Service
