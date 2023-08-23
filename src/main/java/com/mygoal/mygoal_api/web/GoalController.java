@@ -11,9 +11,12 @@ import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.service.goal.GoalService;
 import com.mygoal.mygoal_api.service.user.UserService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
@@ -40,6 +43,12 @@ public class GoalController {
 
         Goal goal = goalService.getGoal(user.getId(), goal_id);
         return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "user/{user_id}/goal/{goal_id}")
+    public ResponseEntity<Goal> editGoal(@PathVariable Long user_id, @PathVariable Long goal_id, @RequestBody @Valid GoalRequest goalRequest){
+
+        return new ResponseEntity<>(goalService.editGoal(user_id, goal_id, goalRequest), HttpStatus.OK);
     }
 
 }

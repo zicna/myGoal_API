@@ -32,6 +32,18 @@ public class GoalServiceImpl implements GoalService {
         throw new NoGoalUnderUserIdException(user_id, goal_id);
     }
 
+    @Override
+    public Goal editGoal(Long user_id, Long goal_id, GoalRequest goalRequest){
+        Goal newGoal = new Goal(goalRequest);
+        Goal oldGoal = getGoalHelper(goal_id);
+
+        if(!oldGoal.getUser().getId().equals(user_id)) throw new NoGoalUnderUserIdException(user_id, goal_id);
+
+        oldGoal.setAllFields(newGoal);
+
+        return goalRepo.save(oldGoal);
+    }
+
     private Goal getGoalHelper(Long goal_id){
         Optional<Goal> goalOpt = goalRepo.findById(goal_id);
         if(goalOpt.isPresent()) return goalOpt.get();
