@@ -5,6 +5,6 @@ public class UserNotFoundException extends RuntimeException {
         super("Email: " + email + " not registered");
     }
     public UserNotFoundException(Long id){
-        super("User under id: " + id + " can not be found.");
+        super("User under id " + id + " can not be found.");
     }
 }
