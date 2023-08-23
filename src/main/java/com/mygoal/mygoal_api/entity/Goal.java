@@ -54,6 +54,15 @@ public class Goal {
 
     }
 
+    public void updateAllFields(Goal goal){
+        this.title = goal.getTitle();
+        this.startDate = goal.getStartDate();
+        this.endDate = goal.getEndDate();
+        this.description = goal.getDescription();
+        this.status = goal.getStatus();
+        this.goalType = goal.getGoalType();
+    }
+
     public Long getId() {
         return id;
     }
