@@ -38,10 +38,7 @@ public class GoalServiceImpl implements GoalService {
     @Override
     public Goal editGoal(Long user_id, Long goal_id, GoalRequest goalRequest) {
         Goal newGoal = new Goal(goalRequest);
-        Goal oldGoal = findGoalById(goal_id);
-
-        if (!oldGoal.getUser().getId().equals(user_id))
-            throw new NoGoalUnderUserIdException(user_id, goal_id);
+        Goal oldGoal = matchGoalToUser(goal_id, user_id);
 
         oldGoal.updateAllFields(newGoal);
 
@@ -50,18 +47,9 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public void deleteGoal(Long user_id, Long goal_id) {
-        Goal goal = findGoalById(goal_id);
-        if (!goal.getUser().getId().equals(user_id))
-            throw new NoGoalUnderUserIdException(user_id, goal_id);
+        matchGoalToUser(goal_id, user_id);
 
         goalRepo.deleteById(goal_id);
-    }
-
-    private Goal findGoalById(Long goal_id) {
-        Optional<Goal> goalOpt = goalRepo.findById(goal_id);
-        if (goalOpt.isPresent())
-            return goalOpt.get();
-        throw new GoalNotFoundException(goal_id);
     }
 
     private Goal matchGoalToUser(Long goal_id, Long user_id) {
@@ -70,5 +58,12 @@ public class GoalServiceImpl implements GoalService {
         if (goal.getUser().getId().equals(user.getId()))
             return goal;
         throw new NoGoalUnderUserIdException(user_id, goal_id);
+    }
+
+    private Goal findGoalById(Long goal_id) {
+        Optional<Goal> goalOpt = goalRepo.findById(goal_id);
+        if (goalOpt.isPresent())
+            return goalOpt.get();
+        throw new GoalNotFoundException(goal_id);
     }
 }
