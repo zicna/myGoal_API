@@ -13,6 +13,7 @@ import com.mygoal.mygoal_api.service.user.UserService;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,13 @@ public class GoalController {
     public ResponseEntity<Goal> editGoal(@PathVariable Long user_id, @PathVariable Long goal_id, @RequestBody @Valid GoalRequest goalRequest){
 
         return new ResponseEntity<>(goalService.editGoal(user_id, goal_id, goalRequest), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value = "user/{user_id}/goal/{goal_id}")
+    public ResponseEntity<String> deleteGoal(@PathVariable Long user_id, @PathVariable Long goal_id){
+
+        return new ResponseEntity<String>("Goal has been deleted. ", HttpStatus.OK);
     }
 
 }

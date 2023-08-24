@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // ! Creating new Goal enpoints
 // TODO: 1.4 refactor methods in GoalServiceImpl 
 
-// TODO: edit goal method
 
-// TODO: delete goal method
+// TODO: delete goal method DONE!
 
 
 // TODO: Add validation for GoalRequest
