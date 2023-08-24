@@ -11,6 +11,7 @@ import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.exception.goal.GoalNotFoundException;
 import com.mygoal.mygoal_api.exception.goal.NoGoalUnderUserIdException;
 import com.mygoal.mygoal_api.repository.goal_repo.GoalRepository;
+import com.mygoal.mygoal_api.service.user.UserService;
 
 @Service
 public class GoalServiceImpl implements GoalService {
@@ -18,7 +19,11 @@ public class GoalServiceImpl implements GoalService {
     @Autowired
     GoalRepository goalRepo;
 
-    public Goal saveGoal(GoalRequest goalRequest, User user) {
+    @Autowired
+    UserService userService;
+
+    public Goal saveGoal(GoalRequest goalRequest, Long user_id) {
+        User user = userService.findById(user_id);
         Goal goal = new Goal(goalRequest);
         goal.setUser(user);
         return goalRepo.save(goal);

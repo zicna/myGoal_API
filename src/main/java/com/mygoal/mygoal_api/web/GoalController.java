@@ -30,16 +30,12 @@ public class GoalController {
 
     @PostMapping(value = "user/{user_id}/goal")
     public ResponseEntity<Goal> createGoal(@RequestBody GoalRequest goalRequest, @PathVariable Long user_id) {
-        // * guard clause to check if user is present, if it is assign it to a goal
-        User user = userService.findById(user_id);
 
-        Goal goal = goalService.saveGoal(goalRequest, user);
-
-        return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+        return new ResponseEntity<Goal>(goalService.saveGoal(goalRequest, user_id), HttpStatus.OK);
     }
 
     @GetMapping(value = "user/{user_id}/goal/{goal_id}")
-    public ResponseEntity<Goal> getGoal(@PathVariable Long user_id, @PathVariable Long goal_id){
+    public ResponseEntity<Goal> getGoal(@PathVariable Long user_id, @PathVariable Long goal_id) {
         User user = userService.findById(user_id);
 
         Goal goal = goalService.getGoal(user.getId(), goal_id);
@@ -47,14 +43,14 @@ public class GoalController {
     }
 
     @PutMapping(value = "user/{user_id}/goal/{goal_id}")
-    public ResponseEntity<Goal> editGoal(@PathVariable Long user_id, @PathVariable Long goal_id, @RequestBody @Valid GoalRequest goalRequest){
+    public ResponseEntity<Goal> editGoal(@PathVariable Long user_id, @PathVariable Long goal_id,
+            @RequestBody @Valid GoalRequest goalRequest) {
 
         return new ResponseEntity<>(goalService.editGoal(user_id, goal_id, goalRequest), HttpStatus.OK);
     }
 
-
     @DeleteMapping(value = "user/{user_id}/goal/{goal_id}")
-    public ResponseEntity<String> deleteGoal(@PathVariable Long user_id, @PathVariable Long goal_id){
+    public ResponseEntity<String> deleteGoal(@PathVariable Long user_id, @PathVariable Long goal_id) {
 
         return new ResponseEntity<String>("Goal has been deleted. ", HttpStatus.OK);
     }
