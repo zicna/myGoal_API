@@ -22,6 +22,7 @@ public class GoalServiceImpl implements GoalService {
     @Autowired
     UserService userService;
 
+    @Override
     public Goal saveGoal(GoalRequest goalRequest, Long user_id) {
         User user = userService.findById(user_id);
         Goal goal = new Goal(goalRequest);
@@ -29,14 +30,9 @@ public class GoalServiceImpl implements GoalService {
         return goalRepo.save(goal);
     }
 
-    
     @Override
     public Goal getGoal(Long user_id, Long goal_id) {
-        Goal goal = findGoalById(goal_id);
-        User user = userService.findById(user_id);
-        if (goal.getUser().getId().equals(user.getId()))
-            return goal;
-        throw new NoGoalUnderUserIdException(user_id, goal_id);
+        return matchGoalToUser(goal_id, user_id);
     }
 
     @Override
@@ -66,5 +62,13 @@ public class GoalServiceImpl implements GoalService {
         if (goalOpt.isPresent())
             return goalOpt.get();
         throw new GoalNotFoundException(goal_id);
+    }
+
+    private Goal matchGoalToUser(Long goal_id, Long user_id) {
+        Goal goal = findGoalById(goal_id);
+        User user = userService.findById(user_id);
+        if (goal.getUser().getId().equals(user.getId()))
+            return goal;
+        throw new NoGoalUnderUserIdException(user_id, goal_id);
     }
 }
