@@ -3,17 +3,12 @@ package com.mygoal.mygoal_api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// ! Creating new Goal enpoints
-// TODO: 1.4 refactor methods in GoalServiceImpl 
-
-
-// TODO: delete goal method DONE!
-
-
-// TODO: Add validation for GoalRequest
+// ! Refactor 
+// TODO: Goal Controller
+// TODO: Goal ServiceImpl
 
 // ! Validation
-// TODO: create custom validation for user password field 
+// TODO: Add validation for GoalRequest
 
 // ! Exceptions
 // TODO: Create separate Goal and User class to handle each exceptions
