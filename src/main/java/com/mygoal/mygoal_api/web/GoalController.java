@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 
 import com.mygoal.mygoal_api.entity.Goal;
 import com.mygoal.mygoal_api.entity.GoalRequest;
-import com.mygoal.mygoal_api.entity.User;
 import com.mygoal.mygoal_api.service.goal.GoalService;
 import com.mygoal.mygoal_api.service.user.UserService;
 
@@ -41,7 +40,7 @@ public class GoalController {
     }
 
     @PutMapping(value = "user/{user_id}/goal/{goal_id}")
-    public ResponseEntity<Goal> editGoal(@PathVariable Long user_id, @PathVariable Long goal_id,
+    public ResponseEntity<Goal> updateGoal(@PathVariable Long user_id, @PathVariable Long goal_id,
             @RequestBody @Valid GoalRequest goalRequest) {
 
         return new ResponseEntity<>(goalService.editGoal(user_id, goal_id, goalRequest), HttpStatus.OK);
