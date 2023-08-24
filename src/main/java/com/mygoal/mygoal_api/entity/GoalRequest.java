@@ -1,11 +1,19 @@
 package com.mygoal.mygoal_api.entity;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class GoalRequest {
+    @NotBlank(message = "Goal title can NOT be blank.")
     private String title;
+    @NotBlank(message = "Goal start date can NOT be blank.")
     private String startDate;
+    @NotBlank(message = "Goal end date can NOT be blank.")
     private String endDate;
+    @NotBlank(message = "Goal description can NOT be blank.")
     private String description;
+    @NotBlank(message = "Goal status can NOT be blank.")
     private String status;
+    @NotBlank(message = "Goal goal type can NOT be blank.")
     private String goalType;
 
     public GoalRequest() {

@@ -28,7 +28,7 @@ public class GoalController {
     UserService userService;
 
     @PostMapping(value = "user/{user_id}/goal")
-    public ResponseEntity<Goal> createGoal(@RequestBody GoalRequest goalRequest, @PathVariable Long user_id) {
+    public ResponseEntity<Goal> createGoal(@RequestBody @Valid GoalRequest goalRequest, @PathVariable Long user_id) {
 
         return new ResponseEntity<Goal>(goalService.saveGoal(goalRequest, user_id), HttpStatus.OK);
     }
