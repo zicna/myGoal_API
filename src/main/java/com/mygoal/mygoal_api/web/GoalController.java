@@ -36,10 +36,8 @@ public class GoalController {
 
     @GetMapping(value = "user/{user_id}/goal/{goal_id}")
     public ResponseEntity<Goal> getGoal(@PathVariable Long user_id, @PathVariable Long goal_id) {
-        User user = userService.findById(user_id);
 
-        Goal goal = goalService.getGoal(user.getId(), goal_id);
-        return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+        return new ResponseEntity<Goal>(goalService.getGoal(user_id, goal_id), HttpStatus.OK);
     }
 
     @PutMapping(value = "user/{user_id}/goal/{goal_id}")

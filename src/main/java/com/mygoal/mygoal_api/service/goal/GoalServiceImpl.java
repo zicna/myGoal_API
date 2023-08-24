@@ -29,13 +29,12 @@ public class GoalServiceImpl implements GoalService {
         return goalRepo.save(goal);
     }
 
-    // ? should we trust that user_id is in our DB or we should run it through and
-    // verify User with user_id presence
-    // ! for now we will trust that user_id is legit :)
+    
     @Override
     public Goal getGoal(Long user_id, Long goal_id) {
-        Goal goal = getGoalHelper(goal_id);
-        if (goal.getUser().getId().equals(user_id))
+        Goal goal = findGoalById(goal_id);
+        User user = userService.findById(user_id);
+        if (goal.getUser().getId().equals(user.getId()))
             return goal;
         throw new NoGoalUnderUserIdException(user_id, goal_id);
     }
@@ -43,7 +42,7 @@ public class GoalServiceImpl implements GoalService {
     @Override
     public Goal editGoal(Long user_id, Long goal_id, GoalRequest goalRequest) {
         Goal newGoal = new Goal(goalRequest);
-        Goal oldGoal = getGoalHelper(goal_id);
+        Goal oldGoal = findGoalById(goal_id);
 
         if (!oldGoal.getUser().getId().equals(user_id))
             throw new NoGoalUnderUserIdException(user_id, goal_id);
@@ -55,14 +54,14 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public void deleteGoal(Long user_id, Long goal_id) {
-        Goal goal = getGoalHelper(goal_id);
+        Goal goal = findGoalById(goal_id);
         if (!goal.getUser().getId().equals(user_id))
             throw new NoGoalUnderUserIdException(user_id, goal_id);
 
         goalRepo.deleteById(goal_id);
     }
 
-    private Goal getGoalHelper(Long goal_id) {
+    private Goal findGoalById(Long goal_id) {
         Optional<Goal> goalOpt = goalRepo.findById(goal_id);
         if (goalOpt.isPresent())
             return goalOpt.get();
