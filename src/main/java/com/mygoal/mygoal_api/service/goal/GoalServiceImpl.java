@@ -43,7 +43,7 @@ public class GoalServiceImpl implements GoalService {
         if (!oldGoal.getUser().getId().equals(user_id))
             throw new NoGoalUnderUserIdException(user_id, goal_id);
 
-        oldGoal.setAllFields(newGoal);
+        oldGoal.updateAllFields(newGoal);
 
         return goalRepo.save(oldGoal);
     }
