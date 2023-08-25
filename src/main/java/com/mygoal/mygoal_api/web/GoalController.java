@@ -48,7 +48,10 @@ public class GoalController {
 
     @PutMapping(value = "user/{user_id}/goal/{goal_id}")
     public ResponseEntity<Goal> updateGoal(@PathVariable Long user_id, @PathVariable Long goal_id,
-            @RequestBody @Valid GoalRequest goalRequest) {
+            @RequestBody @Valid GoalRequest goalRequest, BindingResult result) {
+
+        if (result.hasErrors())
+            throw new WrongGoalInputException(result.getFieldErrors());
 
         return new ResponseEntity<>(goalService.editGoal(user_id, goal_id, goalRequest), HttpStatus.OK);
     }
