@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // 4. type- must be one of (custom validation) or something else 
 // ! Exceptions
 // TODO: Create separate Goal and User class to handle each exceptions
-// TODO: handle MethodArgumentNotValidException.class
+// TODO: handle MethodArgumentNotValidException.class, through controller and controllerAdvice
 
 
 

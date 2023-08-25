@@ -1,12 +1,16 @@
 package com.mygoal.mygoal_api.web;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 
 import com.mygoal.mygoal_api.entity.Goal;
 import com.mygoal.mygoal_api.entity.GoalRequest;
+import com.mygoal.mygoal_api.exception.goal.WrongGoalInputException;
 import com.mygoal.mygoal_api.service.goal.GoalService;
 import com.mygoal.mygoal_api.service.user.UserService;
 
@@ -28,8 +32,11 @@ public class GoalController {
     UserService userService;
 
     @PostMapping(value = "user/{user_id}/goal")
-    public ResponseEntity<Goal> createGoal(@RequestBody @Valid GoalRequest goalRequest, @PathVariable Long user_id) {
-
+    public ResponseEntity<Goal> createGoal(@PathVariable Long user_id, @RequestBody @Valid GoalRequest goalRequest,
+            BindingResult result) {
+        if (result.hasErrors()) {
+            throw new WrongGoalInputException(result.getFieldErrors());
+        }
         return new ResponseEntity<Goal>(goalService.saveGoal(goalRequest, user_id), HttpStatus.OK);
     }
 
