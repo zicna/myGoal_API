@@ -58,6 +58,7 @@ public class GoalController {
 
     @DeleteMapping(value = "user/{user_id}/goal/{goal_id}")
     public ResponseEntity<String> deleteGoal(@PathVariable Long user_id, @PathVariable Long goal_id) {
+        goalService.deleteGoal(user_id, goal_id);
 
         return new ResponseEntity<String>("Goal has been deleted. ", HttpStatus.OK);
     }
