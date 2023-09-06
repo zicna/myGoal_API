@@ -20,8 +20,8 @@ public class User {
     private Long id;
     @Column
     private String email;
-    @Column
-    private String password;
+    // @Column
+    // private String password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -29,7 +29,7 @@ public class User {
 
     public User(String email, String password) {
         this.email = email;
-        this.password = password;
+        // this.password = password;
     }
 
     public User() {
@@ -37,12 +37,12 @@ public class User {
 
     public User(User source) {
         this.email = source.getEmail();
-        this.password = source.getPassword();
+        // this.password = source.getPassword();
     }
 
     public User(UserRequest userRequest) {
         this.email = userRequest.getEmail();
-        this.password = userRequest.getPassword();
+        // this.password = userRequest.getPassword();
 
     }
 
@@ -62,13 +62,13 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
+    // public String getPassword() {
+    //     return this.password;
+    // }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // public void setPassword(String password) {
+    //     this.password = password;
+    // }
 
     public void setGoals(Set<Goal> goals) {
         this.goals = goals;
